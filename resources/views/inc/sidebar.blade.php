@@ -15,19 +15,34 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ url('service') }}">
+            <a href="{{ route('customer.index') }}">
+              <i class="bi bi-circle"></i><span>Customer</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('service.index') }}">
               <i class="bi bi-circle"></i><span>Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('level.index') }}">
+              <i class="bi bi-circle"></i><span>Level</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('user.index') }}">
+              <i class="bi bi-circle"></i><span>User</span>
             </a>
           </li>
         </ul>
       </li><!-- End Components Nav -->
 
-      <li class="nav-heading">Order</li>
+      <li class="nav-heading">Transaction</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
+        <a class="nav-link collapsed" href="{{ route('order.index') }}">
+          <i class="bi bi-book"></i>
+          <span>Order</span>
         </a>
       </li><!-- End Profile Page Nav -->
 

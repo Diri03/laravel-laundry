@@ -11,8 +11,16 @@ Route::get("logout", [App\Http\Controllers\LoginController::class, 'logout'] )->
 
 Route::middleware(['auth'])->group(function(){
     Route::resource('dashboard', App\Http\Controllers\DashboardController::class);
-    Route::get('service', [App\Http\Controllers\DashboardController::class, 'serviceIndex'])->name('service');
-    Route::get('insert/service', [App\Http\Controllers\DashboardController::class, 'insertService']);
+    Route::resource('level', App\Http\Controllers\LevelController::class);
+    Route::resource('service', App\Http\Controllers\ServiceController::class);
+    Route::resource('customer', App\Http\Controllers\CustomerController::class);
+    Route::resource('user', App\Http\Controllers\UserController::class);
+    Route::resource('order', App\Http\Controllers\TransOrdersController::class);
+    Route::resource('product', App\Http\Controllers\ProductController::class);
+    Route::get("print_struk/{id}", [App\Http\Controllers\TransOrdersController::class, 'printStruk'] )->name('print_struk');
+    
+    Route::post("order/{id}/snap", [App\Http\Controllers\TransOrdersController::class, 'snap'] )->name('order.snap');
+
 
 });
 

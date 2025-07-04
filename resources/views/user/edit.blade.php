@@ -5,19 +5,20 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ $title }}</h5>
-                <form action="{{ route('service.store') }}" method="post">
+                <form action="{{ route('user.update', $user->id) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="mb-3">
-                        <label for="" class="form-label">Service Name</label>
-                        <input type="text" name="service_name" class="form-control" placeholder="Enter your service" required>
+                        <label for="" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Enter your user" value="{{ $user->name }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Price</label>
-                        <input type="number" name="price" class="form-control" placeholder="Enter your price" required>
+                        <label for="" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter your email" value="{{ $user->email }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Description</label>
-                        <textarea type="text" cols="30" rows="10" name="description" class="form-control"></textarea>
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter your password" value="">
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Save</button>
