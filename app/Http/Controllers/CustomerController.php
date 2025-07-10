@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Rules\RequiredCustomer;
 
 class CustomerController extends Controller
 {
@@ -32,6 +34,25 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
+        // try {
+        //     $validator =Validator::make($request->all(), [
+        //         'customer_name' => 'required',
+        //     ]);
+    
+        //     if($validator->fails()){
+        //         return response()->json(['status' => 'error', 'errors'=> $validator->errors()], 422);
+        //     }
+        //     $customers = Customers::create($request->all());
+        //     return response()->json(['data' => $customers, 'message' => 'Request success'], 201);
+        // } catch (\Throwable $th) {
+        //     return response()->json(['status' => 'error', 'message' => 'Request failed', 'errors' => $th->getMessage()], 500);
+        // }
+
+        // $request->validate([
+        //     'customer_name' =>['required']
+        // ]);
+
         Customers::create($request->all());
         return redirect()->to('customer')->with('success','Data berhasil ditambahkan');
     }

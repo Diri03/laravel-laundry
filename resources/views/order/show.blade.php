@@ -94,7 +94,8 @@
                             <tr>
                                 <td colspan="4" align="right" class="pe-4"><strong>Change</strong></td>
                                 <td colspan="1">
-                                    <input type="text" class="form-control" id="order_change_display" value="" readonly>
+                                    <span id="order_change_display"></span>
+                                    <!-- <input type="text" class="form-control" id="order_change_display" value="" readonly> -->
                                     <input type="hidden" id="order_change" name="order_change" required>
                                 </td>
                             </tr>
@@ -110,4 +111,22 @@
     </div>
 </div>
 
+
+<script>
+    const selectPay = document.querySelector('#order_pay');
+    const selectChange = document.querySelector('#order_change');
+    const total = document.querySelector('#order_total').value;
+    
+    selectPay.addEventListener('input', function(e){
+        const pay = parseInt(e.target.value) || 0;
+        const change = pay - total;
+        if (change < 0) {
+            console.log(change);            
+            return document.querySelector('#order_change_display').textContent = `Rp. 0`;
+        }
+        
+        return document.querySelector('#order_change_display').textContent = `Rp. ${change.toLocaleString('id-ID')}`;
+    });
+
+</script>
 @endsection

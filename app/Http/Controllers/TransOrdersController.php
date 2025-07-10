@@ -56,17 +56,17 @@ class TransOrdersController extends Controller
             'id_customer' => $request->id_customer,
             'order_code' => $request->order_code,
             'order_end_date' => $request->order_end_date,
-            'total' => $request->grand_total
+            'total' => $request->total
         ]);
 
-        foreach ($request->id_product as $key => $idProduct) {
+        foreach ($request->id_service as $key => $idService) {
             $id_order = $transOrder->id;
 
             TransDetails::create([
                 'id_order' => $id_order,
-                'id_service' => $idProduct,
+                'id_service' => $idService,
                 'qty' => $request->qty[$key] * 1000,
-                'subtotal' => $request->total[$key]
+                'subtotal' => $request->subtotal[$key]
             ]);
         }
 
@@ -135,9 +135,12 @@ class TransOrdersController extends Controller
                 'email' => $order->customer->email ?? "Budi@gmail.com",
                 // 'phone' => "0812345456",
             ],
-            // 'enable_payment' => [
-            //     'qris'
-            // ],
+            'payment_type' => [
+                'qris'
+            ],
+            'qris' =>[
+                'acquirer' => 'gopay',
+            ]
 
         ];
         // $snapToken = Snap::getSnapToken($params);
